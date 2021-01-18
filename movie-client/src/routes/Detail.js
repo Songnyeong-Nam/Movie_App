@@ -71,6 +71,7 @@ const MOVIE_DETAIL = gql`
     movie(id: $id) {
       id
       title
+      ratings
       medium_cover_image
       background_image
     }
