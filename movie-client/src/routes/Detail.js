@@ -35,28 +35,35 @@ const DetailWrapper = styled.div`
 const ImgWrapper = styled(Box)`
   width: 13.5rem;
   height: 500px;
-
   padding-top: 0.6rem;
-  position: absolute;
-  left : 5rem;
+  
+  position: relative;
+  left: 5rem;
+  top: -2rem;
   border: #ea5d35 1px solid;
 
   display: flex;
   justify-content: center;
 `;
 const TextWrapper = styled(ImgWrapper)`
-    width: 60%;
+  width: 60%;
+  left: -10rem;
+  top: 0rem;
+
+  z-index: -3;
+  justify-content: flex-end;
+`;
+const TextContainer = styled(Box)`
+  background: #0f0f0f;
+  width: 80%;
+  height: 92%;
 `
 const ImgContainer = styled.div`
   width: 95%;
   height: 60%;
 
-  border-radius : 20px;
+  border-radius: 20px;
   background: url(${(props) => props.url}) no-repeat center/contain;
-`;
-const DetailContainer = styled.div`
-  width: 70%;
-  background: #0f0f0f;
 `;
 
 const MOVIE_DETAIL = gql`
@@ -83,12 +90,14 @@ const Detail = () => {
       <StyledWrapper url={data.movie.background_image}>
         <StyledGlass />
         <DetailWrapper>
-          
-          <TextWrapper>
           <ImgWrapper>
             <ImgContainer url={data.movie.medium_cover_image} />
           </ImgWrapper>
+          <TextWrapper>
+            <TextContainer>
             <h1>{data.movie.title}</h1>
+
+            </TextContainer>
           </TextWrapper>
         </DetailWrapper>
       </StyledWrapper>
