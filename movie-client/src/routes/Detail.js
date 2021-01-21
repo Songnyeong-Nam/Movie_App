@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { gql, useQuery } from "@apollo/client";
 import { useParams } from "react-router-dom";
 
-import { StyledTitle, StyledSubtitle, Box } from "../util/styledcomponents";
+import { StyledTitle, StyledSubtitle, Styledp, Box } from "../util/styledcomponents";
 
 const StyledWrapper = styled.div`
   width: 100%;
@@ -55,8 +55,9 @@ const TextWrapper = styled(ImgWrapper)`
 `;
 const TextContainer = styled(Box)`
   background: #0f0f0f;
-  width: 80%;
-  height: 92%;
+  width: 74%;
+  height: 86%;
+  padding: 3%;
 `
 const ImgContainer = styled.div`
   width: 95%;
@@ -71,7 +72,8 @@ const MOVIE_DETAIL = gql`
     movie(id: $id) {
       id
       title
-      ratings
+      rating
+      description_intro
       medium_cover_image
       background_image
     }
@@ -96,8 +98,10 @@ const Detail = () => {
           </ImgWrapper>
           <TextWrapper>
             <TextContainer>
-            <h1>{data.movie.title}</h1>
-
+            <StyledTitle>{data.movie.title}</StyledTitle>
+            <StyledSubtitle>rating : {data.movie.rating} / 10</StyledSubtitle>
+            <StyledSubtitle>summary   </StyledSubtitle>
+            <Styledp>{data.movie.description_intro}</Styledp>
             </TextContainer>
           </TextWrapper>
         </DetailWrapper>

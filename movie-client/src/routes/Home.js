@@ -21,8 +21,6 @@ const StyledMovieContainer = styled.div`
     flex-wrap: wrap;
     justify-content: center;
 `
-
-
 const GET_MOVIES = gql`
     query {
         movies{

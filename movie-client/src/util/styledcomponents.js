@@ -43,3 +43,8 @@ export const StyledSubtitle = styled.h2`
     font-size: 1.8rem;
     color: wheat;
 `
+export const Styledp = styled.p`
+    font-size: 1.2rem;
+    line-height: 1.5rem;
+    color: wheat;
+`
