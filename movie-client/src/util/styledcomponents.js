@@ -52,3 +52,7 @@ export const Empty = styled.div`
     width: 100%;
     height: 1.0rem;
 `
+export const HR = styled.hr`
+    margin-top: 1.0rem;
+    border: dotted 0.5px #ea5d35;
+`

@@ -7,7 +7,7 @@ import { Box } from '../util/styledcomponents'
 const StyledMovie = styled.div`
     color: white;
 `
-const Movie = ({id, img}) => {
+const Poster = ({id, img}) => {
     return (
         <StyledMovie>
             <Link to={`/${id}`}>
@@ -17,4 +17,4 @@ const Movie = ({id, img}) => {
     );
 };
 
-export default Movie;
+export default Poster;

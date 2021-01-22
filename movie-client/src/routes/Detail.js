@@ -2,8 +2,16 @@ import React from "react";
 import styled from "styled-components";
 import { gql, useQuery } from "@apollo/client";
 import { useParams } from "react-router-dom";
+import Poster from "../components/Poster";
 
-import { StyledTitle, StyledSubtitle, Styledp, Box, Empty } from "../util/styledcomponents";
+import {
+  StyledTitle,
+  StyledSubtitle,
+  Styledp,
+  Box,
+  Empty,
+  HR,
+} from "../util/styledcomponents";
 
 const StyledWrapper = styled.div`
   width: 100%;
@@ -36,7 +44,7 @@ const ImgWrapper = styled(Box)`
   width: 13.5rem;
   height: 500px;
   padding-top: 0.6rem;
-  
+
   position: relative;
   left: 5rem;
   top: -2rem;
@@ -58,7 +66,7 @@ const TextContainer = styled(Box)`
   width: 74%;
   height: 86%;
   padding: 3%;
-`
+`;
 const ImgContainer = styled.div`
   width: 95%;
   height: 60%;
@@ -78,6 +86,10 @@ const MOVIE_DETAIL = gql`
       medium_cover_image
       background_image
     }
+    suggestions(id: $id) {
+      id
+      medium_cover_image
+    }
   }
 `;
 const Detail = () => {
@@ -85,11 +97,11 @@ const Detail = () => {
   const { loading, data } = useQuery(MOVIE_DETAIL, {
     variables: { id: +id },
   });
+  console.log(data);
   if (loading) {
     return "loading";
   }
   if (data && data.movie) {
-    console.log(data.movie);
     return (
       <StyledWrapper url={data.movie.background_image}>
         <StyledGlass />
@@ -99,14 +111,25 @@ const Detail = () => {
           </ImgWrapper>
           <TextWrapper>
             <TextContainer>
-            <StyledTitle>{data.movie.title}</StyledTitle>
-            <Empty/>
-            <StyledSubtitle size='1.2rem'>rating : {data.movie.rating} / 10</StyledSubtitle>
-            <StyledSubtitle size='1.2rem'>language : {data.movie.language}   </StyledSubtitle>
-            <Empty/>
-            
-            <StyledSubtitle>summary   </StyledSubtitle>
-            <Styledp>{data.movie.description_intro}</Styledp>
+              <StyledTitle>{data.movie.title}</StyledTitle>
+              <Empty />
+              <StyledSubtitle size="1.2rem">
+                rating : {data.movie.rating} / 10
+              </StyledSubtitle>
+              <StyledSubtitle size="1.2rem">
+                language : {data.movie.language}
+              </StyledSubtitle>
+              <Empty />
+              <StyledSubtitle>summary </StyledSubtitle>
+              <Styledp>{data.movie.description_intro}</Styledp>
+              <HR />
+              {data?.suggestions?.map((movie) => {
+                <Poster
+                  key={movie.id}
+                  id={movie.id}
+                  img={movie.medium_cover_image}
+                />;
+              })}
             </TextContainer>
           </TextWrapper>
         </DetailWrapper>
