@@ -40,11 +40,15 @@ export const StyledTitle = styled.h1`
     color: rgb(231, 225, 213);
 `
 export const StyledSubtitle = styled.h2`
-    font-size: 1.8rem;
+    font-size: ${props => props.size || '1.8rem'};
     color: wheat;
 `
 export const Styledp = styled.p`
     font-size: 1.2rem;
     line-height: 1.5rem;
     color: wheat;
+`
+export const Empty = styled.div`
+    width: 100%;
+    height: 1.0rem;
 `
