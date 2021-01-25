@@ -97,11 +97,11 @@ const Detail = () => {
   const { loading, data } = useQuery(MOVIE_DETAIL, {
     variables: { id: +id },
   });
-  console.log(data);
   if (loading) {
     return "loading";
   }
   if (data && data.movie) {
+  console.log('-----2 ' + JSON.stringify(data.suggestions))
     return (
       <StyledWrapper url={data.movie.background_image}>
         <StyledGlass />
@@ -123,12 +123,18 @@ const Detail = () => {
               <StyledSubtitle>summary </StyledSubtitle>
               <Styledp>{data.movie.description_intro}</Styledp>
               <HR />
-              {data?.suggestions?.map((movie) => {
-                <Poster
-                  key={movie.id}
-                  id={movie.id}
-                  img={movie.medium_cover_image}
-                />;
+              <button>Like</button>
+              {data && data.suggestions && data.suggestions.map((movie) => {
+                <>
+                {console.log('---------1' + movie.medium_cover_image)}
+                <StyledSubtitle>{movie}</StyledSubtitle>
+                
+                </>
+                // <Poster
+                //   key={movie.id}
+                //   id={movie.id}
+                //   img={movie.medium_cover_image}
+                // />;
               })}
             </TextContainer>
           </TextWrapper>
